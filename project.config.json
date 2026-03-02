@@ -1,0 +1,10 @@
+{
+  "projectname": "bikeEasy-mini-program",
+  "description": "Configuration for WeChat developer tools",
+  "appid": "YOUR_APPID",
+  "projecttype": "miniapp",
+  "setting": {
+    "urlCheck": true,
+    "autoCompile": true
+  }
+}
