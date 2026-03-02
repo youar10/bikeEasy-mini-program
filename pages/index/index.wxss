@@ -1,93 +1,149 @@
-.container {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background: #f8fcf9;
-}
+<view class="page">
+  <!-- 顶部搜索栏 -->
+  <view class="search-bar">
+    <view class="search-input-group">
+      <view class="search-item">
+        <text class="dot">●</text>
+        <input
+          type="text"
+          placeholder="您的位置"
+          value="{{startLocation}}"
+          bindinput="onStartChange"
+          class="search-input"
+        />
+      </view>
+      <view class="search-item">
+        <text class="location-icon">📍</text>
+        <input
+          type="text"
+          placeholder="输入目的地"
+          value="{{endLocation}}"
+          bindinput="onEndChange"
+          class="search-input"
+        />
+      </view>
+    </view>
+    <button class="swap-btn" bindtap="swapLocations">⇅</button>
+  </view>
 
-.search-bar {
-  background: white;
-  padding: 12px 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
+  <!-- 地图容器 -->
+  <map
+    id="map"
+    style="width: 100%; height: 450px;"
+    latitude="{{latitude}}"
+    longitude="{{longitude}}"
+    scale="{{scale}}"
+    markers="{{markers}}"
+    bindmarkertap="onMarkerTap"
+    enable-rotate="{{true}}"
+    enable-scroll="{{true}}"
+    enable-zoom="{{true}}"
+  ></map>
 
-.search-inputs {
-  background: white;
-  border-radius: 8px;
-  padding: 8px;
-}
+  <!-- 右侧控制按钮 -->
+  <view class="map-controls">
+    <button class="control-btn" bindtap="getCurrentLocation" title="获取当前位置">
+      🎯
+    </button>
+    <button class="control-btn" bindtap="toggleMarkerType" title="切换泊车位/单车径">
+      {{activeMarkerType === 'parking' ? '🅿️' : '🚲'}}
+    </button>
+    <view class="zoom-controls">
+      <button class="zoom-btn" bindtap="zoomIn">+</button>
+      <button class="zoom-btn" bindtap="zoomOut">−</button>
+    </view>
+  </view>
 
-.search-item {
-  display: flex;
-  align-items: center;
-  padding: 8px 12px;
-  border-bottom: 1px solid #f0f0f0;
-}
+  <!-- 底部停车点信息卡片 -->
+  <view class="info-card" wx:if="{{selectedLocation && activeMarkerType === 'parking'}}">
+    <view class="card-header">
+      <view class="card-title-group">
+        <text class="card-title">{{selectedLocation.name}}</text>
+        <text class="card-distance">📍 距离 {{selectedLocation.distance}}米 • 步行约 {{selectedLocation.walkTime}}分钟</text>
+      </view>
+      <view class="card-rating">
+        <text class="rating">⭐ {{selectedLocation.rating}}</text>
+      </view>
+    </view>
 
-.search-item:last-child {
-  border-bottom: none;
-}
+    <view class="card-info">
+      <text class="info-text">📍 {{selectedLocation.address}}</text>
+      <text class="info-text">🏢 容量: {{selectedLocation.capacity}} | 可用: {{selectedLocation.available}}</text>
+      <text class="info-text" wx:if="{{selectedLocation.hasMonitoring}}">🔒 24H监控</text>
+      <text class="info-text">⏰ {{selectedLocation.workingHours}}</text>
+    </view>
 
-.search-item input {
-  flex: 1;
-  border: none;
-  margin-left: 8px;
-  font-size: 14px;
-}
+    <view class="card-amenities">
+      <view class="amenity-tag" wx:for="{{selectedLocation.amenities}}" wx:key="index">
+        {{item}}
+      </view>
+    </view>
 
-.location-card {
-  position: absolute;
-  bottom: 60px;
-  left: 12px;
-  right: 12px;
-  background: white;
-  border-radius: 16px;
-  padding: 16px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-}
+    <view class="card-buttons">
+      <button class="btn-primary" bindtap="navigateTo">
+        🧭 导航至此
+      </button>
+      <button class="btn-secondary" bindtap="goToReport">
+        📢 举报
+      </button>
+    </view>
+  </view>
 
-.card-title {
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 8px;
-}
+  <!-- 底部单车径信息卡片 -->
+  <view class="info-card" wx:if="{{selectedPath && activeMarkerType === 'path'}}">
+    <view class="card-header">
+      <view class="card-title-group">
+        <text class="card-title">{{selectedPath.name}}</text>
+        <text class="card-distance">🚲 {{selectedPath.distance}}km • 约{{selectedPath.estimatedTime}}分钟</text>
+      </view>
+      <view class="card-rating">
+        <text class="rating">⭐ {{selectedPath.rating}}</text>
+      </view>
+    </view>
 
-.card-info {
-  font-size: 12px;
-  color: #999;
-  margin-bottom: 12px;
-}
+    <view class="card-info">
+      <text class="info-text">📍 起点: {{selectedPath.startPoint}}</text>
+      <text class="info-text">📍 终点: {{selectedPath.endPoint}}</text>
+      <text class="info-text">难度: {{selectedPath.difficulty}} | 类型: {{selectedPath.type}}</text>
+      <text class="info-text">路况: {{selectedPath.condition}}</text>
+    </view>
 
-.card-available {
-  font-size: 14px;
-  color: #333;
-  margin-bottom: 12px;
-}
+    <view class="path-description">
+      {{selectedPath.description}}
+    </view>
 
-.card-available .num {
-  color: #2ECC71;
-  font-weight: bold;
-}
+    <view class="card-buttons">
+      <button class="btn-primary" bindtap="navigateTo">
+        🧭 导航到起点
+      </button>
+    </view>
+  </view>
 
-.card-actions {
-  display: flex;
-  gap: 8px;
-}
+  <!-- 泊车位列表预览 -->
+  <view class="locations-preview" wx:if="{{nearbyParkings.length > 0 && activeMarkerType === 'parking'}}">
+    <view class="preview-title">附近泊车位 ({{nearbyParkings.length}})</view>
+    <scroll-view scroll-x class="preview-scroll">
+      <view wx:for="{{nearbyParkings}}" wx:key="id"
+            class="preview-item {{selectedLocation && selectedLocation.id === item.id ? 'active' : ''}}"
+            bindtap="selectParking" data-item="{{item}}">
+        <text class="preview-name">{{item.name}}</text>
+        <text class="preview-distance">{{item.distance}}m</text>
+        <text class="preview-available">剩余: {{item.available}}/{{item.capacity}}</text>
+      </view>
+    </scroll-view>
+  </view>
 
-.btn-primary {
-  flex: 1;
-  background: #2ECC71;
-  color: white;
-  padding: 12px;
-  border-radius: 8px;
-  font-weight: bold;
-}
-
-.btn-secondary {
-  width: 50px;
-  background: #f0f0f0;
-  color: #666;
-  padding: 12px;
-  border-radius: 8px;
-}
+  <!-- 单车径列表预览 -->
+  <view class="locations-preview" wx:if="{{nearbyPaths.length > 0 && activeMarkerType === 'path'}}">
+    <view class="preview-title">附近单车径 ({{nearbyPaths.length}})</view>
+    <scroll-view scroll-x class="preview-scroll">
+      <view wx:for="{{nearbyPaths}}" wx:key="id"
+            class="preview-item {{selectedPath && selectedPath.id === item.id ? 'active' : ''}}"
+            bindtap="selectPath" data-item="{{item}}">
+        <text class="preview-name">{{item.name}}</text>
+        <text class="preview-distance">{{item.distanceToStart}}m</text>
+        <text class="preview-difficulty">{{item.difficulty}}</text>
+      </view>
+    </scroll-view>
+  </view>
+</view>
