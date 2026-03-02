@@ -1,0 +1,1 @@
+{\n  "pages": {\n    "home": "pages/home/home",\n    "detail": "pages/detail/detail"\n  },\n  "window": {\n    "navigationBarBackgroundColor": "#ffffff",\n    "navigationBarTitleText": "BikeEasy",\n    "navigationBarTextStyle": "black"\n  },\n  "debug": true\n}
