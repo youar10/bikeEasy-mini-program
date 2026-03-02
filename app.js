@@ -1,20 +1,31 @@
-// app.js for the BikeEasy mini program
-
 App({
-  onLaunch: function() {
-    // Code to execute when the app launches
-    console.log('BikeEasy Mini Program Launched');
+  onLaunch() {
+    console.log('BikeEasy App launched');
+    this.checkUserAuth();
   },
-  onShow: function() {
-    // Code to execute when the app is displayed
-    console.log('BikeEasy Mini Program is now showing');
+
+  checkUserAuth() {
+    const token = wx.getStorageSync('auth_token');
+    const userInfo = wx.getStorageSync('userInfo');
+    
+    if (!token || !userInfo) {
+      wx.navigateTo({
+        url: '/pages/onboarding/onboarding'
+      });
+    }
   },
-  onHide: function() {
-    // Code to execute when the app is hidden
-    console.log('BikeEasy Mini Program is now hidden');
+
+  onShow() {
+    console.log('App showed');
   },
-  onError: function(error) {
-    // Code to handle app errors
-    console.error('Error occurred in BikeEasy Mini Program:', error);
+
+  onHide() {
+    console.log('App hidden');
+  },
+
+  globalData: {
+    userInfo: null,
+    token: null,
+    apiBaseUrl: 'https://api.bikeasy.example.com'
   }
 });

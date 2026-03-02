@@ -1,0 +1,51 @@
+<view class="container">
+  <view class="header">
+    <text class="title">附近商家</text>
+    <view class="filter-buttons">
+      <button class="filter-btn {{activeFilter === 'all' ? 'active' : ''}}" 
+              bindtap="filterShops" data-filter="all">全部</button>
+      <button class="filter-btn {{activeFilter === 'repair' ? 'active' : ''}}" 
+              bindtap="filterShops" data-filter="repair">维修</button>
+      <button class="filter-btn {{activeFilter === 'shop' ? 'active' : ''}}" 
+              bindtap="filterShops" data-filter="shop">商家</button>
+    </view>
+  </view>
+
+  <scroll-view scroll-y class="shops-list">
+    <view wx:for="{{filteredShops}}" wx:key="id" class="shop-card">
+      <view class="shop-header">
+        <view class="shop-info">
+          <text class="shop-name">{{item.name}}</text>
+          <text class="shop-distance">距离 {{item.distance}}米</text>
+        </view>
+        <view class="shop-rating">
+          <text class="rating">⭐ {{item.rating}}</text>
+        </view>
+      </view>
+
+      <view class="shop-details">
+        <view class="detail-item">
+          <text class="label">📍</text>
+          <text class="value">{{item.address}}</text>
+        </view>
+        <view class="detail-item">
+          <text class="label">📞</text>
+          <text class="value">{{item.phone}}</text>
+        </view>
+        <view class="detail-item">
+          <text class="label">🕐</text>
+          <text class="value">{{item.workingHours}}</text>
+        </view>
+      </view>
+
+      <view class="shop-actions">
+        <button class="action-btn call" bindtap="callShop" data-phone="{{item.phone}}">
+          📞 拨电话
+        </button>
+        <button class="action-btn navigate" bindtap="navigateToShop" data-lat="{{item.latitude}}" data-lng="{{item.longitude}}">
+          🗺️ 导航
+        </button>
+      </view>
+    </view>
+  </scroll-view>
+</view>

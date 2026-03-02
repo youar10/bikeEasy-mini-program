@@ -1,10 +1,15 @@
 {
   "projectname": "bikeEasy-mini-program",
-  "description": "Configuration for WeChat developer tools",
-  "appid": "YOUR_APPID",
-  "projecttype": "miniapp",
+  "appid": "YOUR_APP_ID",
   "setting": {
-    "urlCheck": true,
-    "autoCompile": true
-  }
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true,
+    "newFeature": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.30.0",
+  "srcMiniprogramRoot": "."
 }

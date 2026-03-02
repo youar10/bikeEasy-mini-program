@@ -1,1 +1,51 @@
-{\n  "pages": {\n    "home": "pages/home/home",\n    "detail": "pages/detail/detail"\n  },\n  "window": {\n    "navigationBarBackgroundColor": "#ffffff",\n    "navigationBarTitleText": "BikeEasy",\n    "navigationBarTextStyle": "black"\n  },\n  "debug": true\n}
+{
+  "pages": [
+    "pages/onboarding/onboarding",
+    "pages/login/login",
+    "pages/index/index",
+    "pages/scan/scan",
+    "pages/report/report",
+    "pages/reportHistory/reportHistory",
+    "pages/shops/shops",
+    "pages/profile/profile",
+    "pages/myBikes/myBikes",
+    "pages/savedLocations/savedLocations",
+    "pages/settings/settings",
+    "pages/success/success"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "单车易"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#2ECC71",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "地图导航"
+      },
+      {
+        "pagePath": "pages/scan/scan",
+        "text": "单车专属码"
+      },
+      {
+        "pagePath": "pages/report/report",
+        "text": "投诉举报"
+      },
+      {
+        "pagePath": "pages/shops/shops",
+        "text": "附近商家"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,44 @@
+<view class="container">
+  <view class="header">
+    <text class="title">我的单车</text>
+    <button class="add-btn" bindtap="goToScan">+ 添加单车</button>
+  </view>
+
+  <scroll-view scroll-y class="bikes-list">
+    <view wx:if="{{bikes.length > 0}}">
+      <view wx:for="{{bikes}}" wx:key="id" class="bike-card">
+        <view class="bike-image">
+          🚲
+        </view>
+
+        <view class="bike-info">
+          <text class="bike-brand">{{item.brand}}</text>
+          <text class="bike-serial">编号: {{item.serialNumber}}</text>
+          <text class="bike-color">颜色: {{item.color}}</text>
+          <text class="bike-status {{item.status === 'normal' ? 'status-good' : 'status-warning'}}">
+            {{item.status === 'normal' ? '✓ 状态良好' : '⚠️ 需要维修'}}
+          </text>
+        </view>
+
+        <view class="bike-actions">
+          <button class="action-btn view-qr" bindtap="viewQRCode" data-id="{{item.id}}">
+            二维码
+          </button>
+          <button class="action-btn edit" bindtap="editBike" data-id="{{item.id}}">
+            编辑
+          </button>
+          <button class="action-btn delete" bindtap="deleteBike" data-id="{{item.id}}">
+            删除
+          </button>
+        </view>
+      </view>
+    </view>
+
+    <view wx:else class="empty-state">
+      <text class="empty-icon">🚲</text>
+      <text class="empty-text">还没有登记单车</text>
+      <text class="empty-hint">点击下方"添加单车"开始登记</text>
+      <button class="empty-btn" bindtap="goToScan">添加单车</button>
+    </view>
+  </scroll-view>
+</view>

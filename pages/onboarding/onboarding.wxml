@@ -1,0 +1,26 @@
+<view class="container">
+  <view class="header">
+    <button class="skip-btn" bindtap="skipOnboarding">跳过</button>
+  </view>
+
+  <view class="content">
+    <view class="card">
+      <view class="card-image">{{steps[currentStep].emoji}}</view>
+      <view class="card-body">
+        <text class="card-title">{{steps[currentStep].title}}</text>
+        <text class="card-description">{{steps[currentStep].description}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="indicators">
+    <view wx:for="{{steps}}" wx:key="index" 
+          class="indicator {{currentStep === index ? 'active' : ''}}"></view>
+  </view>
+
+  <view class="footer">
+    <button class="next-btn" bindtap="nextStep">
+      {{currentStep === steps.length - 1 ? '立即开始' : '下一步'}}
+    </button>
+  </view>
+</view>

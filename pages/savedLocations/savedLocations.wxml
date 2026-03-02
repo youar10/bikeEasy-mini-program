@@ -1,0 +1,36 @@
+<view class="container">
+  <view class="header">
+    <button class="back-btn" bindtap="goBack">←</button>
+    <text class="title">收藏地点</text>
+  </view>
+
+  <scroll-view scroll-y class="locations-list">
+    <view wx:if="{{locations.length > 0}}">
+      <view wx:for="{{locations}}" wx:key="id" class="location-card">
+        <view class="location-main">
+          <view class="location-type">{{item.icon}} {{item.type}}</view>
+          <text class="location-name">{{item.name}}</text>
+          <text class="location-address">{{item.address}}</text>
+        </view>
+
+        <view class="location-actions">
+          <button class="action-btn navigate" bindtap="navigateTo" data-lat="{{item.latitude}}" data-lng="{{item.longitude}}">
+            🗺️
+          </button>
+          <button class="action-btn edit" bindtap="editLocation" data-id="{{item.id}}">
+            ✎
+          </button>
+          <button class="action-btn delete" bindtap="deleteLocation" data-id="{{item.id}}">
+            ✕
+          </button>
+        </view>
+      </view>
+    </view>
+
+    <view wx:else class="empty-state">
+      <text class="empty-icon">💾</text>
+      <text class="empty-text">还没有收藏地点</text>
+      <text class="empty-hint">点击地图上的地点即可收藏</text>
+    </view>
+  </scroll-view>
+</view>

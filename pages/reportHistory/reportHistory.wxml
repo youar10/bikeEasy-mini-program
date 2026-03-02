@@ -1,0 +1,53 @@
+<view class="container">
+  <view class="header">
+    <button class="back-btn" bindtap="goBack">←</button>
+    <text class="title">举报历史</text>
+  </view>
+
+  <view class="filter-bar">
+    <button class="filter-btn {{statusFilter === 'all' ? 'active' : ''}}" 
+            bindtap="filterByStatus" data-status="all">全部</button>
+    <button class="filter-btn {{statusFilter === 'processing' ? 'active' : ''}}" 
+            bindtap="filterByStatus" data-status="processing">处理中</button>
+    <button class="filter-btn {{statusFilter === 'completed' ? 'active' : ''}}" 
+            bindtap="filterByStatus" data-status="completed">已完成</button>
+  </view>
+
+  <scroll-view scroll-y class="reports-list">
+    <view wx:if="{{filteredReports.length > 0}}">
+      <view wx:for="{{filteredReports}}" wx:key="id" class="report-card">
+        <view class="report-header">
+          <view class="report-number">{{item.reportNumber}}</view>
+          <view class="report-status {{item.status === 'processing' ? 'status-processing' : 'status-completed'}}">
+            {{item.status === 'processing' ? '处理中' : '已完成'}}
+          </view>
+        </view>
+
+        <view class="report-type">
+          {{item.typeText}}
+        </view>
+
+        <view class="report-location">
+          📍 {{item.location}}
+        </view>
+
+        <view class="report-date">
+          📅 {{item.createdAt}}
+        </view>
+
+        <view class="report-description">
+          {{item.description}}
+        </view>
+
+        <button class="detail-btn" bindtap="viewDetails" data-id="{{item.id}}">
+          查看详情
+        </button>
+      </view>
+    </view>
+
+    <view wx:else class="empty-state">
+      <text class="empty-icon">📋</text>
+      <text class="empty-text">还没有举报记录</text>
+    </view>
+  </scroll-view>
+</view>

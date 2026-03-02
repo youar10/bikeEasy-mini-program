@@ -1,0 +1,31 @@
+<view class="bottom-nav">
+  <button class="nav-item {{activeTab === 'index' ? 'active' : ''}}" 
+          bindtap="switchTab" data-tab="index">
+    <text class="nav-icon">🗺️</text>
+    <text class="nav-label">地图导航</text>
+  </button>
+
+  <button class="nav-item {{activeTab === 'scan' ? 'active' : ''}}" 
+          bindtap="switchTab" data-tab="scan">
+    <text class="nav-icon">📱</text>
+    <text class="nav-label">单车专属码</text>
+  </button>
+
+  <button class="nav-item {{activeTab === 'report' ? 'active' : ''}}" 
+          bindtap="switchTab" data-tab="report">
+    <text class="nav-icon">📢</text>
+    <text class="nav-label">投诉举报</text>
+  </button>
+
+  <button class="nav-item {{activeTab === 'shops' ? 'active' : ''}}" 
+          bindtap="switchTab" data-tab="shops">
+    <text class="nav-icon">🏪</text>
+    <text class="nav-label">附近商家</text>
+  </button>
+
+  <button class="nav-item {{activeTab === 'profile' ? 'active' : ''}}" 
+          bindtap="switchTab" data-tab="profile">
+    <text class="nav-icon">👤</text>
+    <text class="nav-label">我的</text>
+  </button>
+</view>

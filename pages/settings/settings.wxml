@@ -1,0 +1,84 @@
+<view class="container">
+  <view class="header">
+    <button class="back-btn" bindtap="goBack">←</button>
+    <text class="title">设置</text>
+  </view>
+
+  <scroll-view scroll-y class="content">
+    <!-- 账户设置 -->
+    <view class="settings-section">
+      <text class="section-title">账户</text>
+      <view class="settings-group">
+        <view class="settings-item">
+          <text class="item-label">手机号码</text>
+          <text class="item-value">{{userPhone}}</text>
+        </view>
+        <button class="settings-item-btn" bindtap="changePassword">
+          <text class="item-label">修改密码</text>
+          <text class="item-arrow">›</text>
+        </button>
+        <button class="settings-item-btn" bindtap="changePhone">
+          <text class="item-label">更换手机号</text>
+          <text class="item-arrow">›</text>
+        </button>
+      </view>
+    </view>
+
+    <!-- 隐私设置 -->
+    <view class="settings-section">
+      <text class="section-title">隐私与安全</text>
+      <view class="settings-group">
+        <view class="settings-toggle">
+          <text class="item-label">位置信息</text>
+          <switch checked="{{settings.location}}" bindchange="toggleLocation"></switch>
+        </view>
+        <view class="settings-toggle">
+          <text class="item-label">允许通知</text>
+          <switch checked="{{settings.notification}}" bindchange="toggleNotification"></switch>
+        </view>
+        <button class="settings-item-btn" bindtap="privacyPolicy">
+          <text class="item-label">隐私政策</text>
+          <text class="item-arrow">›</text>
+        </button>
+      </view>
+    </view>
+
+    <!-- 应用设置 -->
+    <view class="settings-section">
+      <text class="section-title">应用</text>
+      <view class="settings-group">
+        <view class="settings-item">
+          <text class="item-label">应用版本</text>
+          <text class="item-value">v1.0.0</text>
+        </view>
+        <button class="settings-item-btn" bindtap="checkUpdate">
+          <text class="item-label">检查更新</text>
+          <text class="item-arrow">›</text>
+        </button>
+        <button class="settings-item-btn" bindtap="clearCache">
+          <text class="item-label">清除缓存</text>
+          <text class="item-value">{{cacheSize}}</text>
+        </button>
+      </view>
+    </view>
+
+    <!-- 关于 -->
+    <view class="settings-section">
+      <text class="section-title">关于</text>
+      <view class="settings-group">
+        <button class="settings-item-btn" bindtap="aboutUs">
+          <text class="item-label">关于我们</text>
+          <text class="item-arrow">›</text>
+        </button>
+        <button class="settings-item-btn" bindtap="feedback">
+          <text class="item-label">问题反馈</text>
+          <text class="item-arrow">›</text>
+        </button>
+        <button class="settings-item-btn" bindtap="serviceTerms">
+          <text class="item-label">服务条款</text>
+          <text class="item-arrow">›</text>
+        </button>
+      </view>
+    </view>
+  </scroll-view>
+</view>

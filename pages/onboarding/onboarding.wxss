@@ -1,0 +1,92 @@
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to bottom, #e8fce8, #f6fbf6);
+  padding: 20px;
+}
+
+.header {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.skip-btn {
+  background: transparent;
+  color: #999;
+  font-size: 14px;
+  padding: 0;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 340px;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.card-image {
+  font-size: 80px;
+  margin-bottom: 20px;
+}
+
+.card-title {
+  display: block;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.card-description {
+  display: block;
+  font-size: 14px;
+  color: #999;
+  line-height: 1.6;
+}
+
+.indicators {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ddd;
+  transition: all 0.3s;
+}
+
+.indicator.active {
+  width: 20px;
+  background: #2ECC71;
+}
+
+.footer {
+  padding: 20px 0;
+}
+
+.next-btn {
+  width: 100%;
+  padding: 14px;
+  background: #2ECC71;
+  color: white;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 8px 20px rgba(46, 204, 113, 0.25);
+}

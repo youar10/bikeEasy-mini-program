@@ -1,0 +1,77 @@
+<view class="container">
+  <scroll-view scroll-y class="content">
+    <!-- 用户卡片 -->
+    <view class="user-card">
+      <view class="user-avatar">👤</view>
+      <view class="user-info">
+        <text class="user-name">{{userInfo.name || '单车爱好者'}}</text>
+        <text class="user-phone">{{userInfo.phone}}</text>
+      </view>
+    </view>
+
+    <!-- 统计信息 -->
+    <view class="stats-grid">
+      <view class="stat-item">
+        <text class="stat-value">{{stats.bikes}}</text>
+        <text class="stat-label">我的单车</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">{{stats.reports}}</text>
+        <text class="stat-label">举报数</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">{{stats.level}}</text>
+        <text class="stat-label">用户等级</text>
+      </view>
+      <view class="stat-item">
+        <text class="stat-value">{{stats.carbonCredit}}</text>
+        <text class="stat-label">碳积分</text>
+      </view>
+    </view>
+
+    <!-- 环保数据 -->
+    <view class="eco-card">
+      <text class="eco-title">🌍 环保成就</text>
+      <view class="eco-info">
+        <view class="eco-item">
+          <text class="eco-label">碳减排</text>
+          <text class="eco-value">{{stats.carbonSaved}} kg</text>
+        </view>
+        <view class="eco-item">
+          <text class="eco-label">骑行距离</text>
+          <text class="eco-value">{{stats.distance}} km</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 菜单列表 -->
+    <view class="menu-list">
+      <button class="menu-item" bindtap="goToMyBikes">
+        <text class="menu-icon">🚲</text>
+        <text class="menu-label">我的单车</text>
+        <text class="menu-arrow">›</text>
+      </button>
+
+      <button class="menu-item" bindtap="goToReportHistory">
+        <text class="menu-icon">📋</text>
+        <text class="menu-label">举报历史</text>
+        <text class="menu-arrow">›</text>
+      </button>
+
+      <button class="menu-item" bindtap="goToSavedLocations">
+        <text class="menu-icon">💾</text>
+        <text class="menu-label">收藏地点</text>
+        <text class="menu-arrow">›</text>
+      </button>
+
+      <button class="menu-item" bindtap="goToSettings">
+        <text class="menu-icon">⚙️</text>
+        <text class="menu-label">设置</text>
+        <text class="menu-arrow">›</text>
+      </button>
+    </view>
+
+    <!-- 退出登录 -->
+    <button class="logout-btn" bindtap="logout">退出登录</button>
+  </scroll-view>
+</view>

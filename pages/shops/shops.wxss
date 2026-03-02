@@ -1,0 +1,129 @@
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f8fcf9;
+}
+
+.header {
+  background: white;
+  padding: 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.title {
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.filter-btn {
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  background: white;
+  border-radius: 20px;
+  font-size: 12px;
+  color: #666;
+}
+
+.filter-btn.active {
+  background: #2ECC71;
+  color: white;
+  border-color: #2ECC71;
+}
+
+.shops-list {
+  flex: 1;
+  padding: 12px;
+}
+
+.shop-card {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.shop-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.shop-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.shop-name {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.shop-distance {
+  font-size: 12px;
+  color: #999;
+}
+
+.shop-rating {
+  text-align: right;
+}
+
+.rating {
+  font-size: 12px;
+  color: #FF9800;
+}
+
+.shop-details {
+  margin-bottom: 12px;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+
+.detail-item .label {
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+.detail-item .value {
+  color: #666;
+}
+
+.shop-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.action-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: bold;
+  border: none;
+}
+
+.action-btn.call {
+  background: #2ECC71;
+  color: white;
+}
+
+.action-btn.navigate {
+  background: #f0f0f0;
+  color: #666;
+}

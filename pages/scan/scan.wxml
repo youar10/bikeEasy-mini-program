@@ -1,0 +1,49 @@
+<view class="container">
+  <view class="header">
+    <button class="back-btn" bindtap="goBack">←</button>
+    <text class="header-title">登记单车资讯</text>
+  </view>
+
+  <scroll-view scroll-y class="content">
+    <view class="form">
+      <view class="form-group">
+        <label class="form-label">单车全貌照片</label>
+        <view class="upload-box" bindtap="uploadPhoto">
+          <text class="upload-icon">📷</text>
+          <text class="upload-text">点击上传照片</text>
+          <text class="upload-hint">支持 JPG, PNG 格式</text>
+        </view>
+      </view>
+
+      <view class="form-group">
+        <label class="form-label">品牌 / 型号</label>
+        <input type="text" placeholder="例如：Giant TCR Advanced" 
+               class="form-input" bindinput="onBrandChange"/>
+      </view>
+
+      <view class="form-group">
+        <label class="form-label">车架编号</label>
+        <input type="text" placeholder="请输入车架上的编号" 
+               class="form-input" bindinput="onFrameChange"/>
+      </view>
+
+      <view class="form-group">
+        <label class="form-label">主要颜色</label>
+        <input type="text" placeholder="例如：亮光黑/螢光綠" 
+               class="form-input" bindinput="onColorChange"/>
+      </view>
+
+      <view class="form-group">
+        <label class="form-label">车辆状态</label>
+        <picker bindchange="onStatusChange" value="{{statusIndex}}" 
+                range="{{statusOptions}}">
+          <view class="picker-value">{{statusOptions[statusIndex]}}</view>
+        </picker>
+      </view>
+
+      <button class="submit-btn" bindtap="generateQRCode">
+        生成专属二维码
+      </button>
+    </view>
+  </scroll-view>
+</view>
